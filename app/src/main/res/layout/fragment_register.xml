@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterFragment">
+
+    <ImageView
+        android:id="@+id/registerLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/contentDescription"
+        android:src="@drawable/logocrop"
+        app:layout_constraintBottom_toTopOf="@+id/registerText1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/registerText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/splashWelcome"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/registerText2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerLogo" />
+
+    <TextView
+        android:id="@+id/registerText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/registerDescription"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerText1" />
+
+<EditText
+android:id="@+id/registerEmailInput"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginStart="30dp"
+android:layout_marginEnd="30dp"
+android:autofillHints="email"
+android:ems="10"
+android:fontFamily="@font/poppins_extralight"
+android:inputType="textEmailAddress"
+android:textSize="18sp"
+android:tooltipText="@string/emailInput"
+app:layout_constraintBottom_toTopOf="@+id/registerText5"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/registerText4" />
+
+<EditText
+android:id="@+id/registerPasswordInput"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginStart="30dp"
+android:layout_marginEnd="30dp"
+android:autofillHints="password"
+android:ems="10"
+android:fontFamily="@font/poppins_extralight"
+android:inputType="textPassword"
+android:textSize="18sp"
+android:tooltipText="@string/passwordInput"
+app:layout_constraintBottom_toTopOf="@+id/attemptRegisterButton"
+app:layout_constraintEnd_toStartOf="@+id/registerShowHidePassword"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/registerText5" />
+
+    <Button
+        android:id="@+id/attemptRegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/splashRegister"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerPasswordInput" />
+
+<Button
+android:id="@+id/registerShowHidePassword"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginEnd="30dp"
+android:layout_marginBottom="30dp"
+android:fontFamily="@font/poppins_bold"
+android:text="Button"
+android:textSize="14sp"
+app:layout_constraintBottom_toTopOf="@+id/attemptRegisterButton"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toEndOf="@+id/registerPasswordInput"
+app:layout_constraintTop_toBottomOf="@+id/registerText5" />
+
+<TextView
+android:id="@+id/registerText5"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginStart="35dp"
+android:layout_marginTop="30dp"
+android:layout_marginEnd="35dp"
+android:fontFamily="@font/poppins_bold"
+android:text="@string/passwordInput"
+android:textSize="14sp"
+app:layout_constraintBottom_toTopOf="@+id/registerPasswordInput"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/registerEmailInput" />
+
+    <TextView
+        android:id="@+id/registerText4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="35dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/emailInput"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/registerEmailInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerUsernameInput" />
+
+    <EditText
+        android:id="@+id/registerUsernameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:autofillHints="username"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/registerText4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="35dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/usernameInput"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/registerUsernameInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerText2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

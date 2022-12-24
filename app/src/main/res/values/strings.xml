@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Shooting diary</string>
+    <string name="splashWelcome">welcome</string>
+    <string name="splashDescription">to the future of shooting</string>
+    <string name="splashLogin">LOGIN</string>
+    <string name="splashRegister">REGISTER</string>
+    <string name="contentDescription">App logo.</string>
+    <string name="loginWelcome">welcome back</string>
+    <string name="loginDescription">please log in below</string>
+    <string name="emailInput">E-MAIL ADDRESS</string>
+    <string name="passwordInput">PASSWORD</string>
+    <string name="registerDescription">please register below</string>
+    <string name="usernameInput">USERNAME</string>
+    <string name="showPassword">SHOW</string>
+    <string name="hidePassword">HIDE</string>
 </resources>

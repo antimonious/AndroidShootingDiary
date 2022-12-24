@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginFragment">
+
+    <ImageView
+        android:id="@+id/loginLogo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="150dp"
+        android:contentDescription="@string/contentDescription"
+        android:src="@drawable/logocrop"
+        app:layout_constraintBottom_toTopOf="@+id/loginText1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/loginText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/loginWelcome"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/loginText2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginLogo" />
+
+    <TextView
+        android:id="@+id/loginText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/loginDescription"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/loginEmailInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginText1" />
+
+    <EditText
+        android:id="@+id/loginEmailInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:autofillHints="email"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:inputType="textEmailAddress"
+        android:textSize="18sp"
+        android:tooltipText="@string/emailInput"
+        app:layout_constraintBottom_toTopOf="@+id/loginText4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginText3" />
+
+    <EditText
+        android:id="@+id/loginPasswordInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:autofillHints="password"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        android:tooltipText="@string/passwordInput"
+        app:layout_constraintBottom_toTopOf="@+id/attemptLoginButton"
+        app:layout_constraintEnd_toStartOf="@+id/loginShowHidePassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginText4" />
+
+    <Button
+        android:id="@+id/attemptLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/splashLogin"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginPasswordInput" />
+
+    <Button
+        android:id="@+id/loginShowHidePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Button"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/attemptLoginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/loginPasswordInput"
+        app:layout_constraintTop_toBottomOf="@+id/loginText4" />
+
+    <TextView
+        android:id="@+id/loginText4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="35dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/passwordInput"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/loginPasswordInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailInput" />
+
+    <TextView
+        android:id="@+id/loginText3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="35dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/emailInput"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/loginEmailInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginText2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
