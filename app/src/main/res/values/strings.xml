@@ -13,4 +13,27 @@
     <string name="usernameInput">USERNAME</string>
     <string name="showPassword">SHOW</string>
     <string name="hidePassword">HIDE</string>
+    <string name="menuButton">Menu</string>
+    <string name="matches">matches</string>
+    <string name="addMatch">Add match</string>
+    <string name="matchDetails">match details</string>
+    <string name="inner10s">Inner 10s:</string>
+    <string name="temperature">Temperature:</string>
+    <string name="humidity">Humidity:</string>
+    <string name="airPressure">Air pressure:</string>
+    <string name="overallMood">Overall mood:</string>
+    <string name="reviewSeries">REVIEW SERIES</string>
+    <string name="notes">Notes:</string>
+    <string name="back">Back</string>
+    <string name="editMatch">Edit match</string>
+    <string name="testLong">blablablablablablablablablablablabla</string>
+    <string name="series">series</string>
+    <string name="addSeries">Add series</string>
+    <string name="seriesDetails">series details</string>
+    <string name="editSeries">Edit series</string>
+    <string name="deleteSeries">DELETE SERIES</string>
+    <string name="deleteMatch">DELETE MATCH</string>
+    <string name="result">Result:</string>
+    <string name="decimalResult">Decimal result:</string>
+    <string name="time">Time:</string>
 </resources>

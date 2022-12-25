@@ -9,5 +9,6 @@
         <!-- Customize your theme here. -->
         <item name="android:background">@color/black</item>
         <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:colorButtonNormal">?attr/colorOnPrimary</item>
     </style>
 </resources>

@@ -10,5 +10,7 @@
         <!-- Customize your theme here. -->
         <item name="android:background">@color/offwhite</item>
         <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:colorButtonNormal">?attr/colorOnPrimary</item>
+        <item name="android:listDivider">?attr/colorPrimary</item>
     </style>
 </resources>

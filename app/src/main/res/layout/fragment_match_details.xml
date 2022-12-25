@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/matchDetailsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MatchDetailsFragment">
+
+    <ImageButton
+        android:id="@+id/matchDetailsBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/back"
+        android:src="@drawable/arrow_back_ios_new"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/matchDetailsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/matchDetails"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsEditButton"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsBackButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/matchDetailsEditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/editMatch"
+        android:src="@drawable/edit"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/matchDetailsDateView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matchDetailsBackButton" />
+
+    <TextView
+        android:id="@+id/matchDetailsDateView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="TextView"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/matchDetailsTimeSpanView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsScoreView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/matchDetailsTimeSpanView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/matchDetailsLocationView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsScoreView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matchDetailsDateView" />
+
+    <TextView
+        android:id="@+id/matchDetailsLocationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsInner10sView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsScoreView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matchDetailsTimeSpanView" />
+
+    <TextView
+        android:id="@+id/matchDetailsInner10s"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/inner10s"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/matchDetailsInner10sView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsInner10sView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/matchDetailsInner10sView" />
+
+    <TextView
+        android:id="@+id/matchDetailsTemperature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/temperature"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/matchDetailsTemperatureView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsTemperatureView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/matchDetailsTemperatureView" />
+
+    <TextView
+        android:id="@+id/matchDetailsHumidity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/humidity"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/matchDetailsHumidityView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsHumidityView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/matchDetailsHumidityView" />
+
+    <TextView
+        android:id="@+id/matchDetailsAirPressure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/airPressure"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/matchDetailsAirPressureView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsAirPressureView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/matchDetailsAirPressureView" />
+
+    <TextView
+        android:id="@+id/matchDetailsMood"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/overallMood"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/matchDetailsMoodView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsMoodView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/matchDetailsMoodView" />
+
+    <TextView
+        android:id="@+id/matchDetailsScoreView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsInner10sView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsTimeSpanView"
+        app:layout_constraintTop_toTopOf="@id/matchDetailsDateView" />
+
+    <TextView
+        android:id="@+id/matchDetailsInner10sView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsTemperatureView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsInner10s"
+        app:layout_constraintTop_toBottomOf="@+id/matchDetailsLocationView" />
+
+    <TextView
+        android:id="@+id/matchDetailsTemperatureView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsHumidityView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsTemperature"
+        app:layout_constraintTop_toBottomOf="@id/matchDetailsInner10sView" />
+
+    <TextView
+        android:id="@+id/matchDetailsHumidityView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsAirPressureView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsHumidity"
+        app:layout_constraintTop_toBottomOf="@id/matchDetailsTemperatureView" />
+
+    <TextView
+        android:id="@+id/matchDetailsAirPressureView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsMoodView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsAirPressure"
+        app:layout_constraintTop_toBottomOf="@+id/matchDetailsHumidityView" />
+
+    <TextView
+        android:id="@+id/matchDetailsMoodView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsNotesView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsMood"
+        app:layout_constraintTop_toBottomOf="@id/matchDetailsAirPressureView" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/reviewSeriesButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/matchDetailsNotesView" />
+
+    <Button
+        android:id="@+id/reviewSeriesButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/reviewSeries"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/deleteMatchButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <TextView
+        android:id="@+id/matchDetailsNotes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/notes"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/matchDetailsNotesView"
+        app:layout_constraintEnd_toStartOf="@+id/matchDetailsNotesView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/matchDetailsNotesView" />
+
+    <TextView
+        android:id="@+id/matchDetailsNotesView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/matchDetailsNotes"
+        app:layout_constraintTop_toBottomOf="@id/matchDetailsMoodView" />
+
+    <Button
+        android:id="@+id/deleteMatchButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/deleteMatch"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviewSeriesButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/seriesDetailsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SeriesDetailsFragment">
+
+    <ImageButton
+        android:id="@+id/seriesDetailsBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/back"
+        android:src="@drawable/arrow_back_ios_new"
+        app:layout_constraintEnd_toStartOf="@+id/seriesDetailsTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider5"/>
+
+    <TextView
+        android:id="@+id/seriesDetailsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/seriesDetails"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider5"
+        app:layout_constraintEnd_toStartOf="@+id/seriesDetailsEditButton"
+        app:layout_constraintStart_toEndOf="@+id/seriesDetailsBackButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/seriesDetailsEditButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/editSeries"
+        android:src="@drawable/edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seriesDetailsTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/divider5"/>
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seriesDetailsBackButton"
+        app:layout_constraintBottom_toTopOf="@id/seriesDetailsResult"/>
+
+    <TextView
+        android:id="@+id/seriesDetailsResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/result"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/seriesDetailsResultView"
+        app:layout_constraintEnd_toStartOf="@+id/seriesDetailsResultView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/seriesDetailsResultView" />
+
+    <TextView
+        android:id="@+id/seriesDetailsDecimalResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/decimalResult"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/seriesDetailsDecimalResultView"
+        app:layout_constraintEnd_toStartOf="@+id/seriesDetailsDecimalResultView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/seriesDetailsDecimalResultView" />
+
+    <TextView
+        android:id="@+id/seriesDetailsInner10s"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/inner10s"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/seriesDetailsInner10sView"
+        app:layout_constraintEnd_toStartOf="@+id/seriesDetailsInner10sView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/seriesDetailsInner10sView" />
+
+    <TextView
+        android:id="@+id/seriesDetailsResultView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/seriesDetailsDecimalResultView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seriesDetailsResult"
+        app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+    <TextView
+        android:id="@+id/seriesDetailsDecimalResultView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/seriesDetailsInner10sView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seriesDetailsDecimalResult"
+        app:layout_constraintTop_toBottomOf="@+id/seriesDetailsResultView" />
+
+    <TextView
+        android:id="@+id/seriesDetailsInner10sView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/seriesDetailsTimeView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seriesDetailsInner10s"
+        app:layout_constraintTop_toBottomOf="@+id/seriesDetailsDecimalResultView" />
+
+    <TextView
+        android:id="@+id/seriesDetailsTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/time"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/seriesDetailsTimeView"
+        app:layout_constraintEnd_toStartOf="@+id/seriesDetailsTimeView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/seriesDetailsTimeView" />
+
+    <TextView
+        android:id="@+id/seriesDetailsTimeView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/seriesDetailsNotesView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seriesDetailsTime"
+        app:layout_constraintTop_toBottomOf="@+id/seriesDetailsInner10sView" />
+
+    <TextView
+        android:id="@+id/seriesDetailsNotes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/notes"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/seriesDetailsNotesView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/seriesDetailsNotesView"
+        app:layout_constraintBottom_toBottomOf="@id/seriesDetailsNotesView"/>
+
+    <TextView
+        android:id="@+id/seriesDetailsNotesView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/seriesDetailsNotes"
+        app:layout_constraintTop_toBottomOf="@+id/seriesDetailsTimeView"
+        app:layout_constraintBottom_toTopOf="@id/divider6"/>
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/deleteSeriesButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seriesDetailsNotesView" />
+
+    <Button
+        android:id="@+id/deleteSeriesButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/deleteSeries"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider6" />
+</androidx.constraintlayout.widget.ConstraintLayout>
