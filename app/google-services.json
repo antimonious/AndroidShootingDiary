@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "973575882161",
+    "project_id": "shootingdiary-orwima",
+    "storage_bucket": "shootingdiary-orwima.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973575882161:android:60acaa9ffda29f1add6990",
+        "android_client_info": {
+          "package_name": "com.antimonious.shootingdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "973575882161-26fdf4bs7j0epenep3d8auiq347ha1cm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlNLizJ4P8d-MAitVhaPshu23teIk1VoA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "973575882161-26fdf4bs7j0epenep3d8auiq347ha1cm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
