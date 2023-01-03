@@ -36,4 +36,12 @@
     <string name="result">Result:</string>
     <string name="decimalResult">Decimal result:</string>
     <string name="time">Time:</string>
+    <string name="enterUsername">Please enter a username</string>
+    <string name="enterEmail">Please enter a valid e-mail address</string>
+    <string name="enterPassword">Please enter a password</string>
+    <string name="usernameNotExists">No user with such username exists</string>
+    <string name="usernameExists">A user with such username already exists</string>
+    <string name="emailExists">A user with such email already exists</string>
+    <string name="wrongPassword">Incorrect password</string>
+    <string name="passwordNotStrongEnough">Password has to contain be at least 8 characters long</string>
 </resources>

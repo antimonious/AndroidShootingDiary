@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.firestore.ktx.firestore
@@ -26,6 +27,7 @@ class LoginFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
 
+        val backButton = view.findViewById<ImageButton>(R.id.loginBackButton)
         val passwordVisibilityButton = view.findViewById<Button>(R.id.loginShowHidePassword)
         val passwordInput = view.findViewById<EditText>(R.id.loginPasswordInput)
         val attemptLogin = view.findViewById<Button>(R.id.attemptLoginButton)
@@ -44,17 +46,36 @@ class LoginFragment : Fragment() {
             }
         }
 
+        backButton.setOnClickListener {
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    SplashScreen())
+            fragmentTransaction?.commit()
+        }
+
         attemptLogin.setOnClickListener {
             val username = usernameInput.text.toString()
             val password = passwordInput.text.toString()
 
-            if(username == "") {
-                Toast.makeText(context, "Please enter a username", Toast.LENGTH_SHORT).show()
+            if (username == "") {
+                Toast.makeText(
+                    context,
+                    getString(R.string.enterUsername),
+                    Toast.LENGTH_SHORT)
+                    .show()
             }
 
             else {
                 if (password == "") {
-                    Toast.makeText(context, "Please enter a password", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        context,
+                        getString(R.string.enterPassword),
+                        Toast.LENGTH_SHORT)
                         .show()
                 }
 
@@ -65,26 +86,32 @@ class LoginFragment : Fragment() {
                         .whereEqualTo("username", username)
                         .get()
                         .addOnFailureListener { exception ->
-                            Log.w("MainActivity", "Error getting login documents",
+                            Log.w(
+                                "MainActivity",
+                                "Error getting login documents",
                                 exception)
                             Toast.makeText(
-                                context, "Exception: error getting login documents",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                                context,
+                                "Exception: error getting login documents",
+                                Toast.LENGTH_SHORT)
+                                .show()
                         }
                         .addOnSuccessListener { result ->
                             if (result.isEmpty) {
                                 Toast.makeText(
-                                    context, "No user with such username exists",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                    context,
+                                    getString(R.string.usernameNotExists),
+                                    Toast.LENGTH_SHORT)
+                                    .show()
                             }
 
                             else {
                                 val data = result.documents[0]
                                 val userId = data.id
 
-                                val hashPass = hasher.digest(password.toByteArray())
+                                val hashPass = hasher
+                                    .digest(
+                                        password.toByteArray())
                                     .joinToString(separator = "") {
                                             eachByte -> "%02x".format(eachByte)
                                     }
@@ -92,9 +119,9 @@ class LoginFragment : Fragment() {
                                 if (hashPass != data.get("password")) {
                                     Toast.makeText(
                                         context,
-                                        "Incorrect password",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                        getString(R.string.wrongPassword),
+                                        Toast.LENGTH_SHORT)
+                                        .show()
                                 }
 
                                 else {
@@ -104,11 +131,13 @@ class LoginFragment : Fragment() {
                                     matchListFragment.arguments = bundle
 
                                     val fragmentTransaction: FragmentTransaction? =
-                                        activity?.supportFragmentManager?.beginTransaction()
-                                    fragmentTransaction?.replace(
+                                        activity
+                                            ?.supportFragmentManager
+                                            ?.beginTransaction()
+                                    fragmentTransaction
+                                        ?.replace(
                                         R.id.fragmentContainerView,
-                                        matchListFragment
-                                    )
+                                        matchListFragment)
                                     fragmentTransaction?.commit()
                                 }
                             }
