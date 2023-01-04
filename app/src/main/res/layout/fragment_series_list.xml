@@ -27,16 +27,16 @@
         android:textAlignment="center"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/seriesList"
-        app:layout_constraintEnd_toStartOf="@+id/addSeriesButton"
+        app:layout_constraintEnd_toStartOf="@+id/syncSeriesButton"
         app:layout_constraintStart_toEndOf="@+id/seriesListBackButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/addSeriesButton"
+        android:id="@+id/syncSeriesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/addSeries"
-        android:src="@drawable/add"
+        android:contentDescription="@string/syncSeries"
+        android:src="@drawable/sync"
         app:layout_constraintBottom_toTopOf="@+id/seriesList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/seriesListTitle"

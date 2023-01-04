@@ -1,31 +1,30 @@
 package com.antimonious.shootingdiary
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SeriesDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SeriesDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val db = Firebase.firestore
+    private lateinit var matchId: String
+    private lateinit var seriesId: String
+    private lateinit var user: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            matchId = it.getString("match").toString()
+            seriesId = it.getString("series").toString()
+            user = it.getString("user").toString()
         }
     }
 
@@ -33,27 +32,83 @@ class SeriesDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_series_details, container, false)
-    }
+        val view = inflater.inflate(
+            R.layout.fragment_series_details,
+            container,
+            false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SeriesDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SeriesDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        db.collection("matches")
+            .document(matchId)
+            .collection("series")
+            .document(seriesId)
+            .get()
+            .addOnFailureListener { exception ->
+                Log.w(
+                    "MainActivity",
+                    "Error getting series details",
+                    exception)
+                Toast.makeText(
+                    context,
+                    "Exception: error getting series details",
+                    Toast.LENGTH_SHORT)
+                    .show()
+            }
+            .addOnSuccessListener { result ->
+                if (result.exists()) {
+                    val series = Series(
+                        result.id,
+                        result.getLong("Result"),
+                        result.getDouble("Decimal"),
+                        result.getLong("Inner10s"),
+                        result.getString("TimeSpan"),
+                        result.getString("Notes")
+                    )
+
+                    view.findViewById<TextView>(R.id.seriesDetailsResultView).text =
+                        series.Result.toString()
+                    view.findViewById<TextView>(R.id.seriesDetailsDecimalResultView).text =
+                        series.Decimal.toString()
+                    view.findViewById<TextView>(R.id.seriesDetailsInner10sView).text =
+                        series.Inner10s.toString()
+                    view.findViewById<TextView>(R.id.seriesDetailsTimeView).text =
+                        series.TimeSpan
+                    view.findViewById<TextView>(R.id.seriesDetailsNotesView).text =
+                        series.Notes
+                }
+
+                else {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.seriesNotFound),
+                        Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
+
+        view.findViewById<ImageButton>(R.id.seriesDetailsBackButton).setOnClickListener {
+            val seriesListFragment = SeriesListFragment()
+            val bundle = Bundle()
+            bundle.putString("user", user)
+            bundle.putString("match", matchId)
+            seriesListFragment.arguments = bundle
+
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    seriesListFragment)
+            fragmentTransaction?.commit()
+        }
+
+        view.findViewById<ImageButton>(R.id.seriesDetailsEditButton).setOnClickListener {
+
+        }
+
+        return view
     }
+
+
 }

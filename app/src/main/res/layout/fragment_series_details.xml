@@ -99,7 +99,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins"
-        android:text="TextView"
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/seriesDetailsDecimalResultView"
@@ -113,7 +112,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins"
-        android:text="TextView"
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/seriesDetailsInner10sView"
@@ -127,7 +125,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins"
-        android:text="TextView"
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/seriesDetailsTimeView"
@@ -154,7 +151,6 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins"
-        android:text="TextView"
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/seriesDetailsNotesView"
@@ -181,13 +177,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins"
-        android:text="TextView"
         android:textAlignment="textEnd"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/divider6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/seriesDetailsNotes"
-        app:layout_constraintTop_toBottomOf="@+id/seriesDetailsTimeView"
-        app:layout_constraintBottom_toTopOf="@id/divider6"/>
+        app:layout_constraintTop_toBottomOf="@+id/seriesDetailsTimeView" />
 
     <View
         android:id="@+id/divider6"
@@ -196,22 +191,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/deleteSeriesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seriesDetailsNotesView" />
 
-    <Button
-        android:id="@+id/deleteSeriesButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/deleteSeries"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

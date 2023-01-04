@@ -28,7 +28,7 @@
     <string name="editMatch">Edit match</string>
     <string name="testLong">blablablablablablablablablablablabla</string>
     <string name="series">series</string>
-    <string name="addSeries">Add series</string>
+    <string name="syncSeries">Sync series</string>
     <string name="seriesDetails">series details</string>
     <string name="editSeries">Edit series</string>
     <string name="deleteSeries">DELETE SERIES</string>
@@ -48,4 +48,5 @@
     <string name="matchNotFound">Match not found!</string>
     <string name="matchDeleteSuccess">Match deleted</string>
     <string name="noSeriesFound">No series found!</string>
+    <string name="seriesNotFound">Series not found!</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,32 +22,7 @@ class SeriesListFragment : Fragment() {
     private lateinit var match: String
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            user = it.getString("user").toString()
-            match = it.getString("match").toString()
-        }
-
-        seriesAdapter = SeriesRecyclerAdapter { seriesId ->
-            val seriesDetailsFragment = SeriesDetailsFragment()
-            val bundle = Bundle()
-            bundle.putString("series", seriesId)
-            bundle.putString("match", match)
-            bundle.putString("user", user)
-            seriesDetailsFragment.arguments = bundle
-
-            val fragmentTransaction: FragmentTransaction? =
-                activity
-                    ?.supportFragmentManager
-                    ?.beginTransaction()
-            fragmentTransaction
-                ?.replace(
-                    R.id.fragmentContainerView,
-                    seriesDetailsFragment)
-            fragmentTransaction?.commit()
-        }
-
+    fun getSeries() {
         db.collection("matches")
             .document(match)
             .collection("series")
@@ -92,6 +68,35 @@ class SeriesListFragment : Fragment() {
             }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            user = it.getString("user").toString()
+            match = it.getString("match").toString()
+        }
+
+        seriesAdapter = SeriesRecyclerAdapter { seriesId ->
+            val seriesDetailsFragment = SeriesDetailsFragment()
+            val bundle = Bundle()
+            bundle.putString("series", seriesId)
+            bundle.putString("match", match)
+            bundle.putString("user", user)
+            seriesDetailsFragment.arguments = bundle
+
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    seriesDetailsFragment)
+            fragmentTransaction?.commit()
+        }
+
+        getSeries()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -104,6 +109,29 @@ class SeriesListFragment : Fragment() {
         view.findViewById<RecyclerView>(R.id.seriesList).apply {
             layoutManager = LinearLayoutManager(context)
             adapter = seriesAdapter
+        }
+
+        view.findViewById<ImageButton>(R.id.seriesListBackButton).setOnClickListener {
+            val matchDetailsFragment = MatchDetailsFragment()
+            val bundle = Bundle()
+            bundle.putString("match", match)
+            bundle.putString("user", user)
+            matchDetailsFragment.arguments = bundle
+
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    matchDetailsFragment)
+            fragmentTransaction?.commit()
+        }
+
+        view.findViewById<ImageButton>(R.id.syncSeriesButton).setOnClickListener {
+            seriesAdapter.notifyItemRangeRemoved(0, seriesAdapter.itemCount)
+            getSeries()
         }
 
         return view

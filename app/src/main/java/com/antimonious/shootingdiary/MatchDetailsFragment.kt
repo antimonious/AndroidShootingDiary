@@ -92,8 +92,8 @@ class MatchDetailsFragment : Fragment() {
                     Toast.makeText(
                         context,
                         getString(R.string.matchNotFound),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 
