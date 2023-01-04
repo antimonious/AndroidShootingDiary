@@ -1,31 +1,29 @@
 package com.antimonious.shootingdiary
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MatchDetailsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MatchDetailsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    private val db = Firebase.firestore
+    private lateinit var matchId: String
+    private lateinit var user: String
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            matchId = it.getString("match").toString()
+            user = it.getString("user").toString()
         }
     }
 
@@ -33,27 +31,135 @@ class MatchDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_match_details, container, false)
-    }
+        val view = inflater.inflate(
+            R.layout.fragment_match_details,
+            container,
+            false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MatchDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MatchDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        db.collection("matches")
+            .document(matchId)
+            .get()
+            .addOnFailureListener { exception ->
+                Log.w(
+                    "MainActivity",
+                    "Error getting match details",
+                    exception)
+                Toast.makeText(
+                    context,
+                    "Exception: error getting match details",
+                    Toast.LENGTH_SHORT)
+                    .show()
+            }
+            .addOnSuccessListener { result ->
+                if (result.exists()) {
+                    val match = Match(
+                        result.id,
+                        result.getString("Date"),
+                        result.getString("TimeSpan"),
+                        result.getString("Location"),
+                        result.getLong("Result"),
+                        result.getLong("Inner10s"),
+                        result.getLong("Temperature"),
+                        result.getLong("Humidity"),
+                        result.getLong("AirPressure"),
+                        result.getString("Mood"),
+                        result.getString("Notes")
+                    )
+
+                    view.findViewById<TextView>(R.id.matchDetailsDateView).text =
+                        match.Date
+                    view.findViewById<TextView>(R.id.matchDetailsTimeSpanView).text =
+                        match.TimeSpan
+                    view.findViewById<TextView>(R.id.matchDetailsLocationView).text =
+                        match.Location
+                    view.findViewById<TextView>(R.id.matchDetailsScoreView).text =
+                        match.Result.toString()
+                    view.findViewById<TextView>(R.id.matchDetailsInner10sView).text =
+                        match.Inner10s.toString()
+                    view.findViewById<TextView>(R.id.matchDetailsTemperatureView).text =
+                        match.Temperature.toString()
+                    view.findViewById<TextView>(R.id.matchDetailsHumidityView).text =
+                        match.Humidity.toString()
+                    view.findViewById<TextView>(R.id.matchDetailsAirPressureView).text =
+                        match.AirPressure.toString()
+                    view.findViewById<TextView>(R.id.matchDetailsMoodView).text =
+                        match.Mood
+                    view.findViewById<TextView>(R.id.matchDetailsNotesView).text =
+                        match.Notes
+                }
+
+                else {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.matchNotFound),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+
+        view.findViewById<ImageButton>(R.id.matchDetailsBackButton).setOnClickListener {
+            val matchListFragment = MatchListFragment()
+            val bundle = Bundle()
+            bundle.putString("user", user)
+            matchListFragment.arguments = bundle
+
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    matchListFragment)
+            fragmentTransaction?.commit()
+        }
+
+        view.findViewById<ImageButton>(R.id.matchDetailsEditButton).setOnClickListener {
+
+        }
+
+        view.findViewById<Button>(R.id.reviewSeriesButton).setOnClickListener {
+            val seriesListFragment = SeriesListFragment()
+            val bundle = Bundle()
+            bundle.putString("match", matchId)
+            bundle.putString("user", user)
+            seriesListFragment.arguments = bundle
+
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    seriesListFragment)
+            fragmentTransaction?.commit()
+        }
+
+        view.findViewById<Button>(R.id.deleteMatchButton).setOnClickListener {
+            db.collection("matches")
+                .document(matchId)
+                .delete()
+                .addOnFailureListener { exception ->
+                    Log.w(
+                        "MainActivity",
+                        "Error deleting a match",
+                        exception)
+                    Toast.makeText(
+                        context,
+                        "Exception: error deleting a match",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+                .addOnSuccessListener {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.matchDeleteSuccess),
+                        Toast.LENGTH_SHORT)
+                        .show()
+                    view.findViewById<ImageButton>(R.id.matchDetailsBackButton).performClick()
+                }
+        }
+        return view
     }
 }

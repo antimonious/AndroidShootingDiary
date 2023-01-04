@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MatchRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MatchRecyclerAdapter(private val clickListener: (String) -> Unit) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var matches: List<Match> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
@@ -17,7 +18,9 @@ class MatchRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .inflate(
                     R.layout.match_item,
                     parent,
-                    false))
+                    false)) {
+            clickListener(matches[it].Id.toString())
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -36,7 +39,8 @@ class MatchRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class MatchViewHolder constructor (
-        itemView: View
+        itemView: View,
+        clickAtPosition: (Int) -> Unit
     ): RecyclerView.ViewHolder(itemView) {
         private val matchDate: TextView =
             itemView.findViewById(R.id.matchItemDateView)
@@ -47,11 +51,17 @@ class MatchRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         private val matchScore: TextView =
             itemView.findViewById(R.id.matchItemScoreView)
 
+        init {
+            itemView.setOnClickListener {
+                clickAtPosition(adapterPosition)
+            }
+        }
+
         fun bind (match: Match) {
             matchDate.text = match.Date
             matchTimeSpan.text = match.TimeSpan
             matchLocation.text = match.Location
-            matchScore.text = match.Result
+            matchScore.text = match.Result.toString()
         }
     }
 }

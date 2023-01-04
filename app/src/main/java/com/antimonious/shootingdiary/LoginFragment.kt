@@ -17,7 +17,6 @@ import com.google.firebase.ktx.Firebase
 import java.security.MessageDigest
 
 class LoginFragment : Fragment() {
-
     private var passwordVisibility: Boolean = false
     private val hasher: MessageDigest = MessageDigest.getInstance("SHA-512")
 

@@ -44,4 +44,8 @@
     <string name="emailExists">A user with such email already exists</string>
     <string name="wrongPassword">Incorrect password</string>
     <string name="passwordNotStrongEnough">Password has to contain be at least 8 characters long</string>
+    <string name="noMatchesForUser">No matches found!</string>
+    <string name="matchNotFound">Match not found!</string>
+    <string name="matchDeleteSuccess">Match deleted</string>
+    <string name="noSeriesFound">No series found!</string>
 </resources>
