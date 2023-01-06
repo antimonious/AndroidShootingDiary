@@ -1,5 +1,6 @@
 package com.antimonious.shootingdiary
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,9 +58,10 @@ class MatchRecyclerAdapter(private val clickListener: (String) -> Unit) :
             }
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind (match: Match) {
             matchDate.text = match.Date
-            matchTimeSpan.text = match.TimeSpan
+            matchTimeSpan.text = "${match.StartTime} - ${match.EndTime}"
             matchLocation.text = match.Location
             matchScore.text = match.Result.toString()
         }

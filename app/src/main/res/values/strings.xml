@@ -54,4 +54,16 @@
     <string name="signature">an Advance Ventures product</string>
     <string name="version">v1.0.0 beta</string>
     <string name="close">Close</string>
+    <string name="date">Date:</string>
+    <string name="startTime">Start time:</string>
+    <string name="endTime">End time:</string>
+    <string name="location">Location:</string>
+    <string name="temperatureUnit">°C</string>
+    <string name="humidityUnit">%</string>
+    <string name="airPressureUnit">kPa</string>
+    <string name="save">Save</string>
+    <string name="emptyWarning">Fields must contain a value (except for Notes)</string>
+    <string name="matchResultRangeWarning">Result must be between 0 and 600 (border inclusive)</string>
+    <string name="matchInner10Warning">Amount of inner 10s must be between 0 and 60 (border inclusive)</string>
+    <string name="humidityWarning">Humidity level must be between 0 and 100 (border inclusive)</string>
 </resources>

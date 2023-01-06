@@ -1,5 +1,6 @@
 package com.antimonious.shootingdiary
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -27,6 +28,7 @@ class MatchDetailsFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,7 +57,8 @@ class MatchDetailsFragment : Fragment() {
                     val match = Match(
                         result.id,
                         result.getString("Date"),
-                        result.getString("TimeSpan"),
+                        result.getString("StartTime"),
+                        result.getString("EndTime"),
                         result.getString("Location"),
                         result.getLong("Result"),
                         result.getLong("Inner10s"),
@@ -69,7 +72,7 @@ class MatchDetailsFragment : Fragment() {
                     view.findViewById<TextView>(R.id.matchDetailsDateView).text =
                         match.Date
                     view.findViewById<TextView>(R.id.matchDetailsTimeSpanView).text =
-                        match.TimeSpan
+                        "${match.StartTime} - ${match.EndTime}"
                     view.findViewById<TextView>(R.id.matchDetailsLocationView).text =
                         match.Location
                     view.findViewById<TextView>(R.id.matchDetailsScoreView).text =
@@ -115,7 +118,21 @@ class MatchDetailsFragment : Fragment() {
         }
 
         view.findViewById<ImageButton>(R.id.matchDetailsEditButton).setOnClickListener {
-            //TODO: enable match editing
+            val editMatchFragment = EditMatchFragment()
+            val bundle = Bundle()
+            bundle.putString("user", user)
+            bundle.putString("match", matchId)
+            editMatchFragment.arguments = bundle
+
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    editMatchFragment)
+            fragmentTransaction?.commit()
         }
 
         view.findViewById<Button>(R.id.reviewSeriesButton).setOnClickListener {

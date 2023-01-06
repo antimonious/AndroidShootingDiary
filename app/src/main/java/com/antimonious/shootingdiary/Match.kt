@@ -3,7 +3,8 @@ package com.antimonious.shootingdiary
 data class Match(
     var Id: String?,
     var Date: String?,
-    var TimeSpan: String?,
+    var StartTime: String?,
+    var EndTime: String?,
     var Location: String?,
     var Result: Long?,
     var Inner10s: Long?,

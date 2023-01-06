@@ -9,7 +9,6 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.FragmentTransaction
-import com.antimonious.shootingdiary.R.*
 
 @Suppress("DEPRECATION")
 class MenuFragment : Fragment() {
@@ -27,8 +26,8 @@ class MenuFragment : Fragment() {
                 .isAppearanceLightStatusBars = lightStatusBar
         } }
 
-        if (lightStatusBar) activity?.window?.statusBarColor = resources.getColor(color.offwhite)
-        else activity?.window?.statusBarColor = resources.getColor(color.black)
+        if (lightStatusBar) activity?.window?.statusBarColor = resources.getColor(R.color.offwhite)
+        else activity?.window?.statusBarColor = resources.getColor(R.color.black)
 
         val fragmentTransaction: FragmentTransaction? =
             activity
@@ -55,8 +54,8 @@ class MenuFragment : Fragment() {
                 .isAppearanceLightStatusBars = !lightStatusBar
         } }
 
-        if (lightStatusBar) activity?.window?.statusBarColor = resources.getColor(color.black)
-        else activity?.window?.statusBarColor = resources.getColor(color.offwhite)
+        if (lightStatusBar) activity?.window?.statusBarColor = resources.getColor(R.color.black)
+        else activity?.window?.statusBarColor = resources.getColor(R.color.offwhite)
     }
 
     override fun onCreateView(
@@ -64,7 +63,7 @@ class MenuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(
-            layout.fragment_menu,
+            R.layout.fragment_menu,
             container,
             false)
 

@@ -74,7 +74,8 @@ class MatchListFragment : Fragment() {
                             Match(
                                 data.id,
                                 data.getString("Date"),
-                                data.getString("TimeSpan"),
+                                data.getString("StartTime"),
+                                data.getString("EndTime"),
                                 data.getString("Location"),
                                 data.getLong("Result"),
                                 data.getLong("Inner10s"),
@@ -125,7 +126,20 @@ class MatchListFragment : Fragment() {
         }
 
         view.findViewById<ImageButton>(R.id.addMatchButton).setOnClickListener {
-            //TODO: enable match adding
+            val editMatchFragment = EditMatchFragment()
+            val bundle = Bundle()
+            bundle.putString("user", user)
+            editMatchFragment.arguments = bundle
+
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    editMatchFragment)
+            fragmentTransaction?.commit()
         }
 
         return view

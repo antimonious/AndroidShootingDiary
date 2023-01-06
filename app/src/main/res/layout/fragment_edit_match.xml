@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editMatchLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditMatchFragment">
+
+    <TextView
+        android:id="@+id/editMatchResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/result"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchResultInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchResultInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchResultInput" />
+
+    <ImageButton
+        android:id="@+id/editMatchBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/back"
+        android:src="@drawable/arrow_back_ios_new"
+        app:layout_constraintBottom_toTopOf="@id/editMatchDivider"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchDetailsTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/editMatchDetailsTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/matchDetails"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/editMatchDivider"
+        app:layout_constraintEnd_toStartOf="@+id/saveMatchButton"
+        app:layout_constraintStart_toEndOf="@+id/editMatchBackButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/saveMatchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/save"
+        android:src="@drawable/save"
+        app:layout_constraintBottom_toTopOf="@id/editMatchDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchDetailsTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/editMatchDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchBackButton"
+        app:layout_constraintBottom_toTopOf="@id/editMatchDateInput"/>
+
+    <TextView
+        android:id="@+id/editMatchDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/date"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchDateInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchDateInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchDateInput" />
+
+    <TextView
+        android:id="@+id/editMatchStartTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/startTime"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchStartTimeInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchStartTimeInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchStartTimeInput" />
+
+    <TextView
+        android:id="@+id/editMatchEndTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/endTime"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchEndTimeInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchEndTimeInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchEndTimeInput" />
+
+    <TextView
+        android:id="@+id/editMatchLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/location"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchLocationInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchLocationInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchLocationInput" />
+
+    <TextView
+        android:id="@+id/editMatchInner10s"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/inner10s"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchInner10sInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchInner10sInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchInner10sInput" />
+
+    <TextView
+        android:id="@+id/editMatchTemperature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/temperature"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchTemperatureInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchTemperatureInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchTemperatureInput" />
+
+    <TextView
+        android:id="@+id/editMatchHumidity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/humidity"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchHumidityInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchHumidityInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchHumidityInput" />
+
+    <TextView
+        android:id="@+id/editMatchAirPressureUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/airPressureUnit"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchAirPressureInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchAirPressureInput"
+        app:layout_constraintTop_toTopOf="@+id/editMatchAirPressureInput" />
+
+    <TextView
+        android:id="@+id/editMatchMood"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/overallMood"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchMoodInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchMoodInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchMoodInput" />
+
+    <EditText
+        android:id="@+id/editMatchDateInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchStartTimeInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchDate"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchDivider"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/editMatchStartTimeInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="time"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchEndTimeInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchStartTime"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchDateInput"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/editMatchEndTimeInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="time"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchLocationInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchEndTime"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchStartTimeInput"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editMatchLocationInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchResultInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchLocation"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchEndTimeInput"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/editMatchResultInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchInner10sInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchResult"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchLocationInput"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/editMatchInner10sInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchTemperatureInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchInner10s"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchResultInput"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/editMatchNotes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/notes"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchNotesInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchMoodInput" />
+
+    <TextView
+        android:id="@+id/editMatchTemperatureUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/temperatureUnit"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchTemperatureInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchTemperatureInput"
+        app:layout_constraintTop_toTopOf="@+id/editMatchTemperatureInput" />
+
+    <EditText
+        android:id="@+id/editMatchTemperatureInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="numberSigned"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchHumidityInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchTemperatureUnit"
+        app:layout_constraintStart_toEndOf="@+id/editMatchTemperature"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchInner10sInput"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/editMatchHumidityUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/humidityUnit"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchHumidityInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchHumidityInput"
+        app:layout_constraintTop_toTopOf="@+id/editMatchHumidityInput" />
+
+    <EditText
+        android:id="@+id/editMatchHumidityInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchAirPressureInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchHumidityUnit"
+        app:layout_constraintStart_toEndOf="@+id/editMatchHumidity"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchTemperatureInput"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/editMatchAirPressure"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/airPressure"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchAirPressureInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchAirPressureInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editMatchAirPressureInput" />
+
+    <EditText
+        android:id="@+id/editMatchAirPressureInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchMoodInput"
+        app:layout_constraintEnd_toStartOf="@+id/editMatchAirPressureUnit"
+        app:layout_constraintStart_toEndOf="@+id/editMatchAirPressure"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchHumidityInput"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/editMatchMoodInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textAlignment="textEnd"
+        app:layout_constraintBottom_toTopOf="@+id/editMatchNotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchMood"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchAirPressureInput"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/editMatchNotesInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editMatchNotes"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
