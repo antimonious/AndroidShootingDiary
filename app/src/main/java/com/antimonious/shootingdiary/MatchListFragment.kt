@@ -108,11 +108,24 @@ class MatchListFragment : Fragment() {
         }
 
         view.findViewById<ImageButton>(R.id.menuButton).setOnClickListener {
+            val menuFragment = MenuFragment()
+            val bundle = Bundle()
+            bundle.putString("user", user)
+            menuFragment.arguments = bundle
 
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    menuFragment)
+            fragmentTransaction?.commit()
         }
 
         view.findViewById<ImageButton>(R.id.addMatchButton).setOnClickListener {
-
+            //TODO: enable match adding
         }
 
         return view

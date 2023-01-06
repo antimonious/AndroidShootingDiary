@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
                     is MatchDetailsFragment -> findViewById<ImageButton>(R.id.matchDetailsBackButton).performClick()
                     is SeriesDetailsFragment -> findViewById<ImageButton>(R.id.seriesDetailsBackButton).performClick()
                     is SeriesListFragment -> findViewById<ImageButton>(R.id.seriesListBackButton).performClick()
+                    is MenuFragment -> findViewById<ImageButton>(R.id.closeMenuButton).performClick()
                     else -> super.onBackPressed()
                 }
                 break

@@ -115,7 +115,7 @@ class MatchDetailsFragment : Fragment() {
         }
 
         view.findViewById<ImageButton>(R.id.matchDetailsEditButton).setOnClickListener {
-
+            //TODO: enable match editing
         }
 
         view.findViewById<Button>(R.id.reviewSeriesButton).setOnClickListener {

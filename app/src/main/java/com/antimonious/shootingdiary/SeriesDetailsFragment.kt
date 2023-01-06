@@ -104,7 +104,7 @@ class SeriesDetailsFragment : Fragment() {
         }
 
         view.findViewById<ImageButton>(R.id.seriesDetailsEditButton).setOnClickListener {
-
+            //TODO: enable series editing
         }
 
         return view

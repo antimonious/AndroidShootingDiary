@@ -49,4 +49,9 @@
     <string name="matchDeleteSuccess">Match deleted</string>
     <string name="noSeriesFound">No series found!</string>
     <string name="seriesNotFound">Series not found!</string>
+    <string name="refresh">refresh</string>
+    <string name="signOut">sign out</string>
+    <string name="signature">an Advance Ventures product</string>
+    <string name="version">v1.0.0 beta</string>
+    <string name="close">Close</string>
 </resources>
