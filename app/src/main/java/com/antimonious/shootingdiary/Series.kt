@@ -5,6 +5,7 @@ data class Series(
     var Result: Long?,
     var Decimal: Double?,
     var Inner10s: Long?,
-    var TimeSpan: String?,
+    var StartTime: String?,
+    var EndTime: String?,
     var Notes: String?
 )

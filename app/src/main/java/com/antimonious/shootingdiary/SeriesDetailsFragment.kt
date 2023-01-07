@@ -1,5 +1,6 @@
 package com.antimonious.shootingdiary
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -28,6 +29,7 @@ class SeriesDetailsFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,7 +62,8 @@ class SeriesDetailsFragment : Fragment() {
                         result.getLong("Result"),
                         result.getDouble("Decimal"),
                         result.getLong("Inner10s"),
-                        result.getString("TimeSpan"),
+                        result.getString("StartTime"),
+                        result.getString("EndTime"),
                         result.getString("Notes")
                     )
 
@@ -71,7 +74,7 @@ class SeriesDetailsFragment : Fragment() {
                     view.findViewById<TextView>(R.id.seriesDetailsInner10sView).text =
                         series.Inner10s.toString()
                     view.findViewById<TextView>(R.id.seriesDetailsTimeView).text =
-                        series.TimeSpan
+                        "${series.StartTime} - ${series.EndTime}"
                     view.findViewById<TextView>(R.id.seriesDetailsNotesView).text =
                         series.Notes
                 }
@@ -104,7 +107,22 @@ class SeriesDetailsFragment : Fragment() {
         }
 
         view.findViewById<ImageButton>(R.id.seriesDetailsEditButton).setOnClickListener {
-            //TODO: enable series editing
+            val editSeriesFragment = EditSeriesFragment()
+            val bundle = Bundle()
+            bundle.putString("series", seriesId)
+            bundle.putString("user", user)
+            bundle.putString("match", matchId)
+            editSeriesFragment.arguments = bundle
+
+            val fragmentTransaction: FragmentTransaction? =
+                activity
+                    ?.supportFragmentManager
+                    ?.beginTransaction()
+            fragmentTransaction
+                ?.replace(
+                    R.id.fragmentContainerView,
+                    editSeriesFragment)
+            fragmentTransaction?.commit()
         }
 
         return view

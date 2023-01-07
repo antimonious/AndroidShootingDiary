@@ -66,4 +66,11 @@
     <string name="matchResultRangeWarning">Result must be between 0 and 600 (border inclusive)</string>
     <string name="matchInner10Warning">Amount of inner 10s must be between 0 and 60 (border inclusive)</string>
     <string name="humidityWarning">Humidity level must be between 0 and 100 (border inclusive)</string>
+    <string name="matchUpdated">Match successfully updated</string>
+    <string name="seriesResultRangeWarning">Result must be between 0 and 100 (border inclusive)</string>
+    <string name="seriesDecimalRangeWarning">Decimal result must be between 0 and 100 (border inclusive)</string>
+    <string name="seriesInner10Warning">Amount of inner 10s must be between 0 and 10 (border inclusive)</string>
+    <string name="airPressureNegative">Air pressure cannot be negative</string>
+    <string name="matchAdded">Match added successfully</string>
+    <string name="seriesUpdated">Series successfully updated</string>
 </resources>

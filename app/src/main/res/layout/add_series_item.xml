@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addSeriesLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/addSeriesId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/addSeriesId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addSeriesResultInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+    <EditText
+        android:id="@+id/addSeriesResultInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addSeriesDecimalInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addSeriesResult"
+        app:layout_constraintTop_toBottomOf="@+id/addSeriesId"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/addSeriesResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/result"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addSeriesResultInput"
+        app:layout_constraintEnd_toStartOf="@+id/addSeriesResultInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addSeriesResultInput" />
+
+    <EditText
+        android:id="@+id/addSeriesDecimalInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addSeriesInner10sInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addSeriesDecimal"
+        app:layout_constraintTop_toBottomOf="@+id/addSeriesResultInput"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/addSeriesDecimal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/decimalResult"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addSeriesDecimalInput"
+        app:layout_constraintEnd_toStartOf="@+id/addSeriesDecimalInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addSeriesDecimalInput" />
+
+    <EditText
+        android:id="@+id/addSeriesInner10sInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addSeriesStartTimeInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addSeriesInner10s"
+        app:layout_constraintTop_toBottomOf="@+id/addSeriesDecimalInput"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/addSeriesInner10s"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/inner10s"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addSeriesInner10sInput"
+        app:layout_constraintEnd_toStartOf="@+id/addSeriesInner10sInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addSeriesInner10sInput" />
+
+    <EditText
+        android:id="@+id/addSeriesStartTimeInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:importantForAutofill="no"
+        android:inputType="time"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addSeriesEndTimeInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addSeriesStartTime"
+        app:layout_constraintTop_toBottomOf="@+id/addSeriesInner10sInput"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/addSeriesStartTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/startTime"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addSeriesStartTimeInput"
+        app:layout_constraintEnd_toStartOf="@+id/addSeriesStartTimeInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addSeriesStartTimeInput" />
+
+    <EditText
+        android:id="@+id/addSeriesEndTimeInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:importantForAutofill="no"
+        android:inputType="time"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addSeriesNotes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addSeriesEndTime"
+        app:layout_constraintTop_toBottomOf="@+id/addSeriesStartTimeInput"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/addSeriesEndTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/endTime"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addSeriesEndTimeInput"
+        app:layout_constraintEnd_toStartOf="@+id/addSeriesEndTimeInput"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/addSeriesEndTimeInput" />
+
+    <TextView
+        android:id="@+id/addSeriesNotes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/notes"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addSeriesNotesInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSeriesEndTimeInput" />
+
+    <EditText
+        android:id="@+id/addSeriesNotesInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:fontFamily="@font/poppins_extralight"
+        android:gravity="start|top"
+        android:importantForAutofill="no"
+        android:inputType="textMultiLine"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSeriesNotes"
+        tools:ignore="SpeakableTextPresentCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

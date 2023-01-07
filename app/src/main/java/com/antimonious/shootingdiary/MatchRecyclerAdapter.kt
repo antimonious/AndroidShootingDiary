@@ -41,29 +41,29 @@ class MatchRecyclerAdapter(private val clickListener: (String) -> Unit) :
 
     class MatchViewHolder constructor (
         itemView: View,
-        clickAtPosition: (Int) -> Unit
-    ): RecyclerView.ViewHolder(itemView) {
-        private val matchDate: TextView =
-            itemView.findViewById(R.id.matchItemDateView)
-        private val matchTimeSpan: TextView =
-            itemView.findViewById(R.id.matchItemTimeSpanView)
-        private val matchLocation: TextView =
-            itemView.findViewById(R.id.matchItemLocationView)
-        private val matchScore: TextView =
-            itemView.findViewById(R.id.matchItemScoreView)
+        clickAtPosition: (Int) -> Unit):
+            RecyclerView.ViewHolder(itemView) {
+                private val matchDate: TextView =
+                    itemView.findViewById(R.id.matchItemDateView)
+                private val matchTimeSpan: TextView =
+                    itemView.findViewById(R.id.matchItemTimeSpanView)
+                private val matchLocation: TextView =
+                    itemView.findViewById(R.id.matchItemLocationView)
+                private val matchScore: TextView =
+                    itemView.findViewById(R.id.matchItemScoreView)
 
-        init {
-            itemView.setOnClickListener {
-                clickAtPosition(adapterPosition)
+                init {
+                    itemView.setOnClickListener {
+                        clickAtPosition(adapterPosition)
+                    }
+            }
+
+            @SuppressLint("SetTextI18n")
+            fun bind(match: Match) {
+                matchDate.text = match.Date
+                matchTimeSpan.text = "${match.StartTime} - ${match.EndTime}"
+                matchLocation.text = match.Location
+                matchScore.text = match.Result.toString()
             }
         }
-
-        @SuppressLint("SetTextI18n")
-        fun bind (match: Match) {
-            matchDate.text = match.Date
-            matchTimeSpan.text = "${match.StartTime} - ${match.EndTime}"
-            matchLocation.text = match.Location
-            matchScore.text = match.Result.toString()
-        }
-    }
 }

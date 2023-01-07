@@ -37,6 +37,8 @@ class EditMatchFragment : Fragment() {
             false
         )
 
+        val backButton = view.findViewById<ImageButton>(R.id.editMatchBackButton)
+
         val dateInput = view.findViewById<EditText>(R.id.editMatchDateInput)
         val startTimeInput = view.findViewById<EditText>(R.id.editMatchStartTimeInput)
         val endTimeInput = view.findViewById<EditText>(R.id.editMatchEndTimeInput)
@@ -80,8 +82,7 @@ class EditMatchFragment : Fragment() {
                             result.getLong("Humidity"),
                             result.getLong("AirPressure"),
                             result.getString("Mood"),
-                            result.getString("Notes")
-                        )
+                            result.getString("Notes"))
 
                         val editableFactory = Editable.Factory.getInstance()
 
@@ -129,7 +130,7 @@ class EditMatchFragment : Fragment() {
                 }
         }
 
-        view.findViewById<ImageButton>(R.id.editMatchBackButton).setOnClickListener {
+        backButton.setOnClickListener {
             val matchListFragment = MatchListFragment()
             val bundle = Bundle()
             bundle.putString("user", user)
@@ -211,6 +212,15 @@ class EditMatchFragment : Fragment() {
                 cont = false
             }
 
+            if (cont && airPressure.toLong() < 0) {
+                Toast.makeText(
+                    context,
+                    getString(R.string.airPressureNegative),
+                    Toast.LENGTH_SHORT)
+                    .show()
+                cont = false
+            }
+
             if (cont) {
                 val match = hashMapOf(
                     "userId" to user,
@@ -224,25 +234,65 @@ class EditMatchFragment : Fragment() {
                     "Humidity" to humidity.toLong(),
                     "AirPressure" to airPressure.toLong(),
                     "Mood" to mood,
-                    "Notes" to notes
-                )
+                    "Notes" to notes)
 
-                db.collection("matches")
-                    .add(match)
-                    .addOnFailureListener { exception ->
-                        Log.w(
-                            "MainActivity",
-                            "Error creating match in Firestore",
-                            exception)
-                        Toast.makeText(
-                            context,
-                            "Exception: Error creating match in Firestore",
-                            Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                    .addOnSuccessListener { matchResult ->
-                        //TODO: integrate series adding
-                    }
+                if (matchId != "null") {
+                    db.collection("matches")
+                        .document(matchId)
+                        .set(match)
+                        .addOnFailureListener { exception ->
+                            Log.w(
+                                "MainActivity",
+                                "Error updating match in Firestore",
+                                exception)
+                            Toast.makeText(
+                                context,
+                                "Exception: Error updating match in Firestore",
+                                Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        .addOnSuccessListener {
+                            Toast.makeText(
+                                context,
+                                getString(R.string.matchUpdated),
+                                Toast.LENGTH_SHORT)
+                                .show()
+                            backButton.performClick()
+                        }
+                }
+
+                else {
+                    db.collection("matches")
+                        .add(match)
+                        .addOnFailureListener { exception ->
+                            Log.w(
+                                "MainActivity",
+                                "Error creating match in Firestore",
+                                exception)
+                            Toast.makeText(
+                                context,
+                                "Exception: Error creating match in Firestore",
+                                Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        .addOnSuccessListener { matchResult ->
+                            val addSeriesFragment = AddSeriesFragment()
+                            val bundle = Bundle()
+                            bundle.putString("match", matchResult.id)
+                            bundle.putString("user", user)
+                            addSeriesFragment.arguments = bundle
+
+                            val fragmentTransaction: FragmentTransaction? =
+                                activity
+                                    ?.supportFragmentManager
+                                    ?.beginTransaction()
+                            fragmentTransaction
+                                ?.replace(
+                                    R.id.fragmentContainerView,
+                                    addSeriesFragment)
+                            fragmentTransaction?.commit()
+                        }
+                }
             }
         }
 

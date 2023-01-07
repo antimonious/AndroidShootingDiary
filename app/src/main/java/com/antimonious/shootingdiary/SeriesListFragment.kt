@@ -56,10 +56,9 @@ class SeriesListFragment : Fragment() {
                                 data.getLong("Result"),
                                 data.getDouble("Decimal"),
                                 data.getLong("Inner10s"),
-                                data.getString("TimeSpan"),
-                                data.getString("Notes")
-                            )
-                        )
+                                data.getString("StartTime"),
+                                data.getString("EndTime"),
+                                data.getString("Notes")))
                     }
 
                     seriesAdapter.postItemsList(seriesList)

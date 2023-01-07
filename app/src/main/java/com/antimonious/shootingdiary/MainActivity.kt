@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
         for (fragment in this.supportFragmentManager.fragments) {
             if (fragment.isVisible) {
                 when (fragment) {
+                    is AddSeriesFragment -> findViewById<ImageButton>(R.id.addSeriesDeleteButton).performClick()
+                    is EditMatchFragment -> findViewById<ImageButton>(R.id.editMatchBackButton).performClick()
+                    is EditSeriesFragment -> findViewById<ImageButton>(R.id.editSeriesBackButton).performClick()
                     is LoginFragment -> findViewById<ImageButton>(R.id.loginBackButton).performClick()
                     is RegisterFragment -> findViewById<ImageButton>(R.id.registerBackButton).performClick()
                     is MatchDetailsFragment -> findViewById<ImageButton>(R.id.matchDetailsBackButton).performClick()

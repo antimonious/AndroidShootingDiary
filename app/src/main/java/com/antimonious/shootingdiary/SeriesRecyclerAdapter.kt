@@ -1,5 +1,6 @@
 package com.antimonious.shootingdiary
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,9 +58,10 @@ class SeriesRecyclerAdapter(private val clickListener: (String) -> Unit) :
             }
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind (series: Series) {
-            "Series: ${series.Id}".also { seriesId.text = it }
-            seriesTimeSpan.text = series.TimeSpan
+            seriesId.text = "Series: ${series.Id}"
+            seriesTimeSpan.text = "${series.StartTime} - ${series.EndTime}"
             seriesInner10s.text = series.Inner10s.toString()
             seriesScore.text = series.Result.toString()
         }
