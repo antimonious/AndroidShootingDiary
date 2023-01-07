@@ -17,13 +17,14 @@ import com.google.firebase.ktx.Firebase
 import java.security.MessageDigest
 
 class LoginFragment : Fragment() {
+    private val db = Firebase.firestore
     private var passwordVisibility: Boolean = false
     private val hasher: MessageDigest = MessageDigest.getInstance("SHA-512")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?):
+            View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
 
         val backButton = view.findViewById<ImageButton>(R.id.loginBackButton)
@@ -60,88 +61,91 @@ class LoginFragment : Fragment() {
         attemptLogin.setOnClickListener {
             val username = usernameInput.text.toString()
             val password = passwordInput.text.toString()
+            var cont = true
 
             if (username == "") {
                 Toast.makeText(
                     context,
                     getString(R.string.enterUsername),
-                    Toast.LENGTH_SHORT)
+                    Toast.LENGTH_SHORT
+                )
                     .show()
+                cont = false
             }
 
-            else {
-                if (password == "") {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.enterPassword),
-                        Toast.LENGTH_SHORT)
-                        .show()
-                }
+            if (cont && password == "") {
+                Toast.makeText(
+                    context,
+                    getString(R.string.enterPassword),
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                cont = false
+            }
 
-                else {
-                    val db = Firebase.firestore
-
-                    db.collection("users")
-                        .whereEqualTo("username", username)
-                        .get()
-                        .addOnFailureListener { exception ->
-                            Log.w(
-                                "MainActivity",
-                                "Error getting login documents",
-                                exception)
+            if (cont) {
+                db.collection("users")
+                    .whereEqualTo("username", username)
+                    .get()
+                    .addOnFailureListener { exception ->
+                        Log.w(
+                            "MainActivity",
+                            "Error getting login documents",
+                            exception)
+                        Toast.makeText(
+                            context,
+                            "Exception: error getting login documents",
+                            Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    .addOnSuccessListener { result ->
+                        if (result.isEmpty) {
                             Toast.makeText(
                                 context,
-                                "Exception: error getting login documents",
+                                getString(R.string.usernameNotExists),
                                 Toast.LENGTH_SHORT)
                                 .show()
+                            cont = false
                         }
-                        .addOnSuccessListener { result ->
-                            if (result.isEmpty) {
+
+                        if (cont) {
+                            val data = result.documents[0]
+                            val userId = data.id
+
+                            val hashPass = hasher
+                                .digest(
+                                    password.toByteArray())
+                                .joinToString(separator = "") { eachByte ->
+                                    "%02x".format(eachByte)
+                                }
+
+                            if (hashPass != data.get("password")) {
                                 Toast.makeText(
                                     context,
-                                    getString(R.string.usernameNotExists),
+                                    getString(R.string.wrongPassword),
                                     Toast.LENGTH_SHORT)
                                     .show()
+                                cont = false
                             }
 
-                            else {
-                                val data = result.documents[0]
-                                val userId = data.id
+                            if (cont) {
+                                val matchListFragment = MatchListFragment()
+                                val bundle = Bundle()
+                                bundle.putString("user", userId)
+                                matchListFragment.arguments = bundle
 
-                                val hashPass = hasher
-                                    .digest(
-                                        password.toByteArray())
-                                    .joinToString(separator = "") {
-                                            eachByte -> "%02x".format(eachByte)
-                                    }
-
-                                if (hashPass != data.get("password")) {
-                                    Toast.makeText(
-                                        context,
-                                        getString(R.string.wrongPassword),
-                                        Toast.LENGTH_SHORT)
-                                        .show()
-                                }
-
-                                else {
-                                    val matchListFragment = MatchListFragment()
-                                    val bundle = Bundle()
-                                    bundle.putString("user", userId)
-                                    matchListFragment.arguments = bundle
-
-                                    val fragmentTransaction: FragmentTransaction? =
-                                        activity
-                                            ?.supportFragmentManager
-                                            ?.beginTransaction()
-                                    fragmentTransaction
-                                        ?.replace(
+                                val fragmentTransaction: FragmentTransaction? =
+                                    activity
+                                        ?.supportFragmentManager
+                                        ?.beginTransaction()
+                                fragmentTransaction
+                                    ?.replace(
                                         R.id.fragmentContainerView,
                                         matchListFragment)
-                                    fragmentTransaction?.commit()
-                                }
+                                fragmentTransaction?.commit()
                             }
                         }
-                }
+                    }
             }
         }
         return view

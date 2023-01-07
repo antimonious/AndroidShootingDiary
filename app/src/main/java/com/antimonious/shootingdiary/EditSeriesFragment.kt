@@ -23,16 +23,16 @@ class EditSeriesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            matchId = it.getString("matchId").toString()
-            seriesId = it.getString("seriesId").toString()
+            matchId = it.getString("match").toString()
+            seriesId = it.getString("series").toString()
             user = it.getString("user").toString()
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?):
+            View? {
         val view = inflater.inflate(
             R.layout.fragment_edit_series,
             container,
@@ -56,13 +56,11 @@ class EditSeriesFragment : Fragment() {
                 Log.w(
                     "MainActivity",
                     "Error getting series details",
-                    exception
-                )
+                    exception)
                 Toast.makeText(
                     context,
                     "Exception: error getting series details",
-                    Toast.LENGTH_SHORT
-                )
+                    Toast.LENGTH_SHORT)
                     .show()
             }
             .addOnSuccessListener { result ->

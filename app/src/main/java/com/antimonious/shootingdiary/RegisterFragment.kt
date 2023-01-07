@@ -18,14 +18,18 @@ import com.google.firebase.ktx.Firebase
 import java.security.MessageDigest
 
 class RegisterFragment : Fragment() {
+    private val db = Firebase.firestore
     private var passwordVisibility: Boolean = false
     private val hasher: MessageDigest = MessageDigest.getInstance("SHA-512")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_register, container, false)
+        savedInstanceState: Bundle?):
+            View? {
+        val view = inflater.inflate(
+            R.layout.fragment_register,
+            container,
+            false)
 
         val backButton = view.findViewById<ImageButton>(R.id.registerBackButton)
         val passwordVisibilityButton = view.findViewById<Button>(R.id.registerShowHidePassword)
@@ -37,7 +41,7 @@ class RegisterFragment : Fragment() {
         passwordVisibilityButton.setOnClickListener {
             passwordVisibility = !passwordVisibility
 
-            if(passwordVisibility) {
+            if (passwordVisibility) {
                 passwordVisibilityButton.text = getString(R.string.hidePassword)
                 passwordInput.transformationMethod = null
             }
@@ -63,6 +67,7 @@ class RegisterFragment : Fragment() {
             val username = usernameInput.text.toString()
             val email = emailInput.text.toString()
             val password = passwordInput.text.toString()
+            var cont = true
 
             if (username == "") {
                 Toast.makeText(
@@ -70,143 +75,136 @@ class RegisterFragment : Fragment() {
                     getString(R.string.enterUsername),
                     Toast.LENGTH_SHORT)
                     .show()
+                cont = false
             }
 
-            else {
-                if (email == "" ||
-                    !Patterns
-                        .EMAIL_ADDRESS
-                        .matcher(email)
-                        .matches()) {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.enterEmail),
-                        Toast.LENGTH_SHORT)
-                        .show()
-                }
+            if (cont && (email == "" ||
+                !Patterns
+                    .EMAIL_ADDRESS
+                    .matcher(email)
+                    .matches())) {
+                Toast.makeText(
+                    context,
+                    getString(R.string.enterEmail),
+                    Toast.LENGTH_SHORT)
+                    .show()
+                cont = false
+            }
 
-                else {
-                    if (password == "") {
+            if (cont && password == "") {
+                Toast.makeText(
+                    context,
+                    getString(R.string.enterPassword),
+                    Toast.LENGTH_SHORT)
+                    .show()
+                cont = false
+            }
+
+            if (cont && password.length < 8) {
+                Toast.makeText(
+                    context,
+                    getString(R.string.passwordNotStrongEnough),
+                    Toast.LENGTH_SHORT)
+                    .show()
+                cont = false
+            }
+
+            if (cont) {
+                db.collection("users")
+                    .whereEqualTo("username", username)
+                    .get()
+                    .addOnFailureListener { exception ->
+                        Log.w(
+                            "MainActivity",
+                            "Error getting register documents",
+                            exception)
                         Toast.makeText(
                             context,
-                            getString(R.string.enterPassword),
+                            "Exception: error getting register documents",
                             Toast.LENGTH_SHORT)
                             .show()
                     }
-
-                    else {
-                        if (password.length < 8) {
+                    .addOnSuccessListener { usernameResult ->
+                        if (!usernameResult.isEmpty) {
                             Toast.makeText(
                                 context,
-                                getString(R.string.passwordNotStrongEnough),
+                                getString(R.string.usernameExists),
                                 Toast.LENGTH_SHORT)
                                 .show()
+                            cont = false
                         }
 
-                        else {
-                            val db = Firebase.firestore
-
+                        if (cont) {
                             db.collection("users")
-                                .whereEqualTo("username", username)
+                                .whereEqualTo("email", email)
                                 .get()
                                 .addOnFailureListener { exception ->
                                     Log.w(
                                         "MainActivity",
                                         "Error getting register documents",
-                                        exception
-                                    )
+                                        exception)
                                     Toast.makeText(
                                         context,
                                         "Exception: error getting register documents",
-                                        Toast.LENGTH_SHORT
-                                    )
+                                        Toast.LENGTH_SHORT)
                                         .show()
                                 }
-                                .addOnSuccessListener { usernameResult ->
-                                    if (!usernameResult.isEmpty) {
+                                .addOnSuccessListener { emailResult ->
+                                    if (!emailResult.isEmpty) {
                                         Toast.makeText(
                                             context,
-                                            getString(R.string.usernameExists),
-                                            Toast.LENGTH_SHORT
-                                        )
+                                            getString(R.string.emailExists),
+                                            Toast.LENGTH_SHORT)
                                             .show()
-                                    } else {
+                                        cont = false
+                                    }
+
+                                    if (cont) {
+                                        val hashPass = hasher
+                                            .digest(
+                                                password.toByteArray())
+                                            .joinToString(separator = "") { eachByte ->
+                                                "%02x".format(eachByte)
+                                            }
+
+                                        val user = hashMapOf(
+                                            "username" to username,
+                                            "email" to email,
+                                            "password" to hashPass)
+
                                         db.collection("users")
-                                            .whereEqualTo("email", email)
-                                            .get()
+                                            .add(user)
                                             .addOnFailureListener { exception ->
                                                 Log.w(
                                                     "MainActivity",
-                                                    "Error getting register documents",
-                                                    exception
-                                                )
+                                                    "Error creating user in Firestore",
+                                                    exception)
                                                 Toast.makeText(
                                                     context,
-                                                    "Exception: error getting register documents",
-                                                    Toast.LENGTH_SHORT
-                                                )
+                                                    "Exception: Error creating user in Firestore",
+                                                    Toast.LENGTH_SHORT)
                                                     .show()
                                             }
-                                            .addOnSuccessListener { emailResult ->
-                                                if (!emailResult.isEmpty) {
-                                                    Toast.makeText(
-                                                        context,
-                                                        getString(R.string.emailExists),
-                                                        Toast.LENGTH_SHORT
-                                                    )
-                                                        .show()
-                                                } else {
-                                                    val hashPass = hasher
-                                                        .digest(
-                                                            password.toByteArray())
-                                                        .joinToString(separator = "") {
-                                                            eachByte -> "%02x".format(eachByte)
-                                                        }
+                                            .addOnSuccessListener { registerResult ->
+                                                val matchListFragment = MatchListFragment()
+                                                val bundle = Bundle()
+                                                bundle.putString("user", registerResult.id)
+                                                matchListFragment.arguments = bundle
 
-                                                    val user = hashMapOf(
-                                                        "username" to username,
-                                                        "email" to email,
-                                                        "password" to hashPass
-                                                    )
-
-                                                    db.collection("users")
-                                                        .add(user)
-                                                        .addOnFailureListener { exception ->
-                                                            Log.w(
-                                                                "MainActivity",
-                                                                "Error creating user in Firestore",
-                                                                exception)
-                                                            Toast.makeText(
-                                                                context,
-                                                                "Exception: Error creating user in Firestore",
-                                                                Toast.LENGTH_SHORT)
-                                                                .show()
-                                                        }
-                                                        .addOnSuccessListener { registerResult ->
-                                                            val matchListFragment = MatchListFragment()
-                                                            val bundle = Bundle()
-                                                            bundle.putString(
-                                                                "user",
-                                                                registerResult.id)
-                                                            matchListFragment.arguments = bundle
-
-                                                            val fragmentTransaction: FragmentTransaction? =
-                                                                activity
-                                                                    ?.supportFragmentManager
-                                                                    ?.beginTransaction()
-                                                            fragmentTransaction
-                                                                ?.replace(
-                                                                    R.id.fragmentContainerView,
-                                                                    matchListFragment)
-                                                            fragmentTransaction?.commit()
-                                                        }
-                                                }
+                                                val fragmentTransaction: FragmentTransaction? =
+                                                    activity
+                                                        ?.supportFragmentManager
+                                                        ?.beginTransaction()
+                                                fragmentTransaction
+                                                    ?.replace(
+                                                        R.id.fragmentContainerView,
+                                                        matchListFragment)
+                                                fragmentTransaction?.commit()
                                             }
                                     }
                                 }
                         }
                     }
-                }
             }
         }
         return view

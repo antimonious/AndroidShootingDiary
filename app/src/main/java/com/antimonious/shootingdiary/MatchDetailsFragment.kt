@@ -31,12 +31,14 @@ class MatchDetailsFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?):
+            View? {
         val view = inflater.inflate(
             R.layout.fragment_match_details,
             container,
             false)
+
+        val backButton = view.findViewById<ImageButton>(R.id.matchDetailsBackButton)
 
         db.collection("matches")
             .document(matchId)
@@ -71,22 +73,31 @@ class MatchDetailsFragment : Fragment() {
 
                     view.findViewById<TextView>(R.id.matchDetailsDateView).text =
                         match.Date
+
                     view.findViewById<TextView>(R.id.matchDetailsTimeSpanView).text =
                         "${match.StartTime} - ${match.EndTime}"
+
                     view.findViewById<TextView>(R.id.matchDetailsLocationView).text =
                         match.Location
+
                     view.findViewById<TextView>(R.id.matchDetailsScoreView).text =
                         match.Result.toString()
+
                     view.findViewById<TextView>(R.id.matchDetailsInner10sView).text =
                         match.Inner10s.toString()
+
                     view.findViewById<TextView>(R.id.matchDetailsTemperatureView).text =
                         match.Temperature.toString()
+
                     view.findViewById<TextView>(R.id.matchDetailsHumidityView).text =
                         match.Humidity.toString()
+
                     view.findViewById<TextView>(R.id.matchDetailsAirPressureView).text =
                         match.AirPressure.toString()
+
                     view.findViewById<TextView>(R.id.matchDetailsMoodView).text =
                         match.Mood
+
                     view.findViewById<TextView>(R.id.matchDetailsNotesView).text =
                         match.Notes
                 }
@@ -100,7 +111,7 @@ class MatchDetailsFragment : Fragment() {
                 }
             }
 
-        view.findViewById<ImageButton>(R.id.matchDetailsBackButton).setOnClickListener {
+        backButton.setOnClickListener {
             val matchListFragment = MatchListFragment()
             val bundle = Bundle()
             bundle.putString("user", user)
@@ -174,9 +185,10 @@ class MatchDetailsFragment : Fragment() {
                         getString(R.string.matchDeleteSuccess),
                         Toast.LENGTH_SHORT)
                         .show()
-                    view.findViewById<ImageButton>(R.id.matchDetailsBackButton).performClick()
+                    backButton.performClick()
                 }
         }
+
         return view
     }
 }

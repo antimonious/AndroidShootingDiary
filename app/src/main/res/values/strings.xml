@@ -73,4 +73,5 @@
     <string name="airPressureNegative">Air pressure cannot be negative</string>
     <string name="matchAdded">Match added successfully</string>
     <string name="seriesUpdated">Series successfully updated</string>
+    <string name="today">TODAY</string>
 </resources>

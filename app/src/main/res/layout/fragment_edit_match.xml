@@ -196,7 +196,7 @@
         android:textAlignment="textEnd"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/editMatchStartTimeInput"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/todayButton"
         app:layout_constraintStart_toEndOf="@+id/editMatchDate"
         app:layout_constraintTop_toBottomOf="@+id/editMatchDivider"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -433,5 +433,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editMatchNotesInput" />
+
+    <Button
+        android:id="@+id/todayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/today"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editMatchDateInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editMatchDateInput"
+        app:layout_constraintTop_toTopOf="@+id/editMatchDateInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

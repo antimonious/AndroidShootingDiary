@@ -62,8 +62,7 @@ class MatchListFragment : Fragment() {
                     Toast.makeText(
                         context,
                         getString(R.string.noMatchesForUser),
-                        Toast.LENGTH_SHORT
-                    )
+                        Toast.LENGTH_SHORT)
                         .show()
                 }
 
@@ -83,9 +82,7 @@ class MatchListFragment : Fragment() {
                                 data.getLong("Humidity"),
                                 data.getLong("AirPressure"),
                                 data.getString("Mood"),
-                                data.getString("Notes")
-                            )
-                        )
+                                data.getString("Notes")))
                     }
 
                     matchAdapter.postItemsList(matchList)
@@ -96,8 +93,8 @@ class MatchListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?):
+            View? {
         val view = inflater.inflate(
             R.layout.fragment_match_list,
             container,

@@ -24,6 +24,33 @@ class AddSeriesFragment : Fragment() {
     private var counter: Int = 0
     private lateinit var series: ArrayList<Series>
 
+    private fun seriesUpload(i: Int) {
+        val seriesHash = hashMapOf(
+            "Result" to series[i - counter].Result,
+            "Decimal" to series[i - counter].Decimal,
+            "Inner10s" to series[i - counter].Inner10s,
+            "StartTime" to series[i - counter].StartTime,
+            "EndTime" to series[i - counter].EndTime,
+            "Notes" to series[i - counter].Notes)
+
+        db.collection("matches")
+            .document(matchId)
+            .collection("series")
+            .document("${i + 1}")
+            .set(seriesHash)
+            .addOnFailureListener { exception ->
+                Log.w(
+                    "MainActivity",
+                    "Error adding series ${i + 1} in Firestore",
+                    exception)
+                Toast.makeText(
+                    context,
+                    "Exception: Error adding series ${i + 1} in Firestore",
+                    Toast.LENGTH_SHORT)
+                    .show()
+            }
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +73,7 @@ class AddSeriesFragment : Fragment() {
                     "0".toLong(),
                     "",
                     "",
-                    ""
-                ))
+                    ""))
             i++
         }
 
@@ -57,8 +83,8 @@ class AddSeriesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?):
+            View? {
         val view = inflater.inflate(
             R.layout.fragment_add_series,
             container,
@@ -206,65 +232,9 @@ class AddSeriesFragment : Fragment() {
             if (cont) {
                 i = counter
 
-                var seriesHash = hashMapOf(
-                    "Result" to series[i - counter].Result,
-                    "Decimal" to series[i - counter].Decimal,
-                    "Inner10s" to series[i - counter].Inner10s,
-                    "StartTime" to series[i - counter].StartTime,
-                    "EndTime" to series[i - counter].EndTime,
-                    "Notes" to series[i - counter].Notes
-                )
-
-                db.collection("matches")
-                    .document(matchId)
-                    .collection("series")
-                    .document("${i + 1}")
-                    .set(seriesHash)
-                    .addOnFailureListener { exception ->
-                        Log.w(
-                            "MainActivity",
-                            "Error adding series ${i + 1} in Firestore",
-                            exception
-                        )
-                        Toast.makeText(
-                            context,
-                            "Exception: Error adding series ${i + 1} in Firestore",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    }
-
+                seriesUpload(i)
                 i++
-
-                seriesHash = hashMapOf(
-                    "Result" to series[i - counter].Result,
-                    "Decimal" to series[i - counter].Decimal,
-                    "Inner10s" to series[i - counter].Inner10s,
-                    "StartTime" to series[i - counter].StartTime,
-                    "EndTime" to series[i - counter].EndTime,
-                    "Notes" to series[i - counter].Notes
-                )
-
-                db.collection("matches")
-                    .document(matchId)
-                    .collection("series")
-                    .document("${i + 1}")
-                    .set(seriesHash)
-                    .addOnFailureListener { exception ->
-                        Log.w(
-                            "MainActivity",
-                            "Error adding series ${i + 1} in Firestore",
-                            exception
-                        )
-                        Toast.makeText(
-                            context,
-                            "Exception: Error adding series ${i + 1} in Firestore",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                    }
-
-                i++
+                seriesUpload(i)
                 counter += 2
 
                 if (counter == 6){
@@ -287,8 +257,7 @@ class AddSeriesFragment : Fragment() {
                     fragmentTransaction
                         ?.replace(
                             R.id.fragmentContainerView,
-                            seriesListFragment
-                        )
+                            seriesListFragment)
                     fragmentTransaction?.commit()
                 }
 

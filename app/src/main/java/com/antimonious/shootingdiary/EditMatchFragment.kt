@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDate
 
 class EditMatchFragment : Fragment() {
     private val db = Firebase.firestore
@@ -29,15 +31,15 @@ class EditMatchFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?):
+            View? {
         val view = inflater.inflate(
             R.layout.fragment_edit_match,
             container,
-            false
-        )
+            false)
 
         val backButton = view.findViewById<ImageButton>(R.id.editMatchBackButton)
+        val todayButton = view.findViewById<Button>(R.id.todayButton)
 
         val dateInput = view.findViewById<EditText>(R.id.editMatchDateInput)
         val startTimeInput = view.findViewById<EditText>(R.id.editMatchStartTimeInput)
@@ -51,6 +53,19 @@ class EditMatchFragment : Fragment() {
         val moodInput = view.findViewById<EditText>(R.id.editMatchMoodInput)
         val notesInput = view.findViewById<EditText>(R.id.editMatchNotesInput)
 
+        todayButton.setOnClickListener {
+            dateInput.text =
+                Editable
+                    .Factory
+                    .getInstance()
+                    .newEditable(
+                        LocalDate
+                            .now()
+                            .toString())
+        }
+
+        todayButton.performClick()
+
         if (matchId != "null") {
             db.collection("matches")
                 .document(matchId)
@@ -59,13 +74,11 @@ class EditMatchFragment : Fragment() {
                     Log.w(
                         "MainActivity",
                         "Error getting match details",
-                        exception
-                    )
+                        exception)
                     Toast.makeText(
                         context,
                         "Exception: error getting match details",
-                        Toast.LENGTH_SHORT
-                    )
+                        Toast.LENGTH_SHORT)
                         .show()
                 }
                 .addOnSuccessListener { result ->
@@ -131,10 +144,20 @@ class EditMatchFragment : Fragment() {
         }
 
         backButton.setOnClickListener {
-            val matchListFragment = MatchListFragment()
+            lateinit var fragment: Fragment
             val bundle = Bundle()
             bundle.putString("user", user)
-            matchListFragment.arguments = bundle
+
+            if (matchId != "null") {
+                fragment = MatchDetailsFragment()
+                bundle.putString("match", matchId)
+            }
+
+            else {
+                fragment = MatchListFragment()
+            }
+
+            fragment.arguments = bundle
 
             val fragmentTransaction: FragmentTransaction? =
                 activity
@@ -143,7 +166,7 @@ class EditMatchFragment : Fragment() {
             fragmentTransaction
                 ?.replace(
                     R.id.fragmentContainerView,
-                    matchListFragment)
+                    fragment)
             fragmentTransaction?.commit()
         }
 

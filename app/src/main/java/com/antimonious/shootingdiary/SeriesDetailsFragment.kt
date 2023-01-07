@@ -32,8 +32,8 @@ class SeriesDetailsFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?):
+            View? {
         val view = inflater.inflate(
             R.layout.fragment_series_details,
             container,
@@ -64,17 +64,20 @@ class SeriesDetailsFragment : Fragment() {
                         result.getLong("Inner10s"),
                         result.getString("StartTime"),
                         result.getString("EndTime"),
-                        result.getString("Notes")
-                    )
+                        result.getString("Notes"))
 
                     view.findViewById<TextView>(R.id.seriesDetailsResultView).text =
                         series.Result.toString()
+
                     view.findViewById<TextView>(R.id.seriesDetailsDecimalResultView).text =
                         series.Decimal.toString()
+
                     view.findViewById<TextView>(R.id.seriesDetailsInner10sView).text =
                         series.Inner10s.toString()
+
                     view.findViewById<TextView>(R.id.seriesDetailsTimeView).text =
                         "${series.StartTime} - ${series.EndTime}"
+
                     view.findViewById<TextView>(R.id.seriesDetailsNotesView).text =
                         series.Notes
                 }
@@ -127,6 +130,4 @@ class SeriesDetailsFragment : Fragment() {
 
         return view
     }
-
-
 }

@@ -15,12 +15,7 @@ class MenuFragment : Fragment() {
     private lateinit var user: String
     private var lightStatusBar: Boolean = false
 
-    private fun transitionToMatchList() {
-        val matchListFragment = MatchListFragment()
-        val bundle = Bundle()
-        bundle.putString("user", user)
-        matchListFragment.arguments = bundle
-
+    private fun colorChange() {
         activity?.let { activity?.window?.decorView?.let { it1 ->
             WindowInsetsControllerCompat(it.window, it1)
                 .isAppearanceLightStatusBars = lightStatusBar
@@ -28,6 +23,15 @@ class MenuFragment : Fragment() {
 
         if (lightStatusBar) activity?.window?.statusBarColor = resources.getColor(R.color.offwhite)
         else activity?.window?.statusBarColor = resources.getColor(R.color.black)
+    }
+
+    private fun transitionToMatchList() {
+        val matchListFragment = MatchListFragment()
+        val bundle = Bundle()
+        bundle.putString("user", user)
+        matchListFragment.arguments = bundle
+
+        colorChange()
 
         val fragmentTransaction: FragmentTransaction? =
             activity
@@ -60,8 +64,8 @@ class MenuFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        savedInstanceState: Bundle?):
+            View? {
         val view = inflater.inflate(
             R.layout.fragment_menu,
             container,
@@ -76,8 +80,8 @@ class MenuFragment : Fragment() {
         }
 
         view.findViewById<TextView>(R.id.signOutButton).setOnClickListener {
+            colorChange()
             val splashScreen = SplashScreen()
-
             val fragmentTransaction: FragmentTransaction? =
                 activity
                     ?.supportFragmentManager
