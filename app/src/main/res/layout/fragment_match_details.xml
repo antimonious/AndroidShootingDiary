@@ -228,7 +228,7 @@
         android:fontFamily="@font/poppins"
         android:textAlignment="textEnd"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/matchDetailsNotesView"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsNotes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/matchDetailsMood"
         app:layout_constraintTop_toBottomOf="@id/matchDetailsAirPressureView" />
@@ -265,26 +265,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/notes"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/matchDetailsNotesView"
-        app:layout_constraintEnd_toStartOf="@+id/matchDetailsNotesView"
+        app:layout_constraintBottom_toTopOf="@id/matchDetailsNotesView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/matchDetailsNotesView" />
+        app:layout_constraintTop_toBottomOf="@id/matchDetailsMoodView" />
 
     <TextView
         android:id="@+id/matchDetailsNotesView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/poppins"
-        android:textAlignment="textEnd"
+        android:textAlignment="textStart"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/divider2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/matchDetailsNotes"
-        app:layout_constraintTop_toBottomOf="@id/matchDetailsMoodView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/matchDetailsNotes" />
 
     <Button
         android:id="@+id/deleteMatchButton"

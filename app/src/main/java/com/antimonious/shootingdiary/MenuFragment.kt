@@ -1,5 +1,6 @@
 package com.antimonious.shootingdiary
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,15 +15,46 @@ import androidx.fragment.app.FragmentTransaction
 class MenuFragment : Fragment() {
     private lateinit var user: String
     private var lightStatusBar: Boolean = false
+    private var lightStatusUndefined: Boolean = false
+    
+    private fun nightCheck(view: View) {
+        val nightMode = view.context.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK
+
+        if (nightMode == Configuration.UI_MODE_NIGHT_NO)
+            lightStatusBar = true
+
+        else if (nightMode == Configuration.UI_MODE_NIGHT_UNDEFINED)
+            lightStatusUndefined = true
+    }
 
     private fun colorChange() {
-        activity?.let { activity?.window?.decorView?.let { it1 ->
-            WindowInsetsControllerCompat(it.window, it1)
-                .isAppearanceLightStatusBars = lightStatusBar
-        } }
+        if (!lightStatusUndefined) {
+            activity?.let {
+                activity?.window?.decorView?.let { it1 ->
+                    WindowInsetsControllerCompat(it.window, it1)
+                        .isAppearanceLightStatusBars = !lightStatusBar
+                }
+            }
 
-        if (lightStatusBar) activity?.window?.statusBarColor = resources.getColor(R.color.offwhite)
-        else activity?.window?.statusBarColor = resources.getColor(R.color.black)
+            if (lightStatusBar) activity?.window?.statusBarColor = resources.getColor(R.color.black)
+            else activity?.window?.statusBarColor = resources.getColor(R.color.offwhite)
+        }
+    }
+
+    private fun colorRevert() {
+        if (!lightStatusUndefined) {
+            activity?.let {
+                activity?.window?.decorView?.let { it1 ->
+                    WindowInsetsControllerCompat(it.window, it1)
+                        .isAppearanceLightStatusBars = lightStatusBar
+                }
+            }
+
+            if (lightStatusBar) activity?.window?.statusBarColor =
+                resources.getColor(R.color.offwhite)
+            else activity?.window?.statusBarColor = resources.getColor(R.color.black)
+        }
     }
 
     private fun transitionToMatchList() {
@@ -31,7 +63,7 @@ class MenuFragment : Fragment() {
         bundle.putString("user", user)
         matchListFragment.arguments = bundle
 
-        colorChange()
+        colorRevert()
 
         val fragmentTransaction: FragmentTransaction? =
             activity
@@ -47,19 +79,6 @@ class MenuFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         user = arguments?.getString("user").toString()
-
-        lightStatusBar = activity?.let { activity?.window?.decorView?.let { it1 ->
-            WindowInsetsControllerCompat(it.window, it1)
-                .isAppearanceLightStatusBars
-        } } == true
-
-        activity?.let { activity?.window?.decorView?.let { it1 ->
-            WindowInsetsControllerCompat(it.window, it1)
-                .isAppearanceLightStatusBars = !lightStatusBar
-        } }
-
-        if (lightStatusBar) activity?.window?.statusBarColor = resources.getColor(R.color.black)
-        else activity?.window?.statusBarColor = resources.getColor(R.color.offwhite)
     }
 
     override fun onCreateView(
@@ -71,6 +90,9 @@ class MenuFragment : Fragment() {
             container,
             false)
 
+        nightCheck(view)
+        colorChange()
+
         view.findViewById<ImageButton>(R.id.closeMenuButton).setOnClickListener {
             transitionToMatchList()
         }
@@ -80,7 +102,8 @@ class MenuFragment : Fragment() {
         }
 
         view.findViewById<TextView>(R.id.signOutButton).setOnClickListener {
-            colorChange()
+            colorRevert()
+
             val splashScreen = SplashScreen()
             val fragmentTransaction: FragmentTransaction? =
                 activity
